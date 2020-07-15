@@ -1,0 +1,419 @@
+{
+  "intents": [
+    {
+      "intent": "telling_rollnumber",
+      "examples": [
+        {
+          "text": "my roll number is 171mc158",
+          "mentions": [
+            {
+              "entity": "rollnumber",
+              "location": [
+                18,
+                26
+              ]
+            }
+          ]
+        },
+        {
+          "text": "171mc209",
+          "mentions": [
+            {
+              "entity": "rollnumber",
+              "location": [
+                0,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "text": "my Id is 171mc160",
+          "mentions": [
+            {
+              "entity": "rollnumber",
+              "location": [
+                9,
+                17
+              ]
+            }
+          ]
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "greeting",
+      "examples": [
+        {
+          "text": "good afternoon"
+        },
+        {
+          "text": "Good morning"
+        },
+        {
+          "text": "good evening"
+        },
+        {
+          "text": "nice to meet you"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "thankyou",
+      "examples": [
+        {
+          "text": "Thank you"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "answer2",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "condition",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "answer",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "for",
+          "synonyms": [
+            "for loop"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "rollnumber",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "171mc209",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "171mc160",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "171mc158",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "slot",
+      "parent": "node_9_1594809997220",
+      "variable": "$rollnumber",
+      "dialog_node": "slot_10_1594810025625"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1594803497061",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1594803497093",
+      "previous_sibling": "handler_10_1594803497093"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1594803497061",
+      "context": {
+        "answer1": "@answer"
+      },
+      "conditions": "@answer",
+      "event_name": "input",
+      "dialog_node": "handler_10_1594803497093"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1594804309487",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1594804309511",
+      "previous_sibling": "handler_7_1594804309510"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1594804309487",
+      "context": {
+        "answer2": "@answer2"
+      },
+      "conditions": "@answer2",
+      "event_name": "input",
+      "dialog_node": "handler_7_1594804309510"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Enter your roll number alone"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_10_1594810025625",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1594810025657",
+      "previous_sibling": "handler_3_1594810025657"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1594810025625",
+      "context": {
+        "rollnumber": "@rollnumber"
+      },
+      "conditions": "@rollnumber",
+      "event_name": "input",
+      "dialog_node": "handler_3_1594810025657"
+    },
+    {
+      "type": "slot",
+      "parent": "node_7_1594803470808",
+      "variable": "$answer1",
+      "dialog_node": "slot_7_1594803497061"
+    },
+    {
+      "type": "slot",
+      "parent": "node_6_1594804278467",
+      "variable": "$answer2",
+      "dialog_node": "slot_9_1594804309487"
+    },
+    {
+      "type": "frame",
+      "title": "answer1",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "okay"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1594803372317",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_8_1594804232131"
+      },
+      "conditions": "true",
+      "dialog_node": "node_7_1594803470808"
+    },
+    {
+      "type": "frame",
+      "title": "answer2",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "that's great"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1594804232131",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1594804392550"
+      },
+      "conditions": "@answer2",
+      "dialog_node": "node_6_1594804278467"
+    },
+    {
+      "type": "standard",
+      "title": "Question1",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "If you know the no of iteration which loop will you prefer in c?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_7_1594803470808"
+      },
+      "conditions": "true",
+      "dialog_node": "node_6_1594803372317",
+      "previous_sibling": "node_9_1594809997220"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_1_1594804392550",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "question2",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "If is condition or loop?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_6_1594804278467"
+      },
+      "conditions": "true",
+      "dialog_node": "node_8_1594804232131",
+      "previous_sibling": "node_2_1594809325995"
+    },
+    {
+      "type": "standard",
+      "dialog_node": "node_2_1594809325995",
+      "previous_sibling": "node_6_1594803372317"
+    },
+    {
+      "type": "standard",
+      "title": "Thankyou",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thank you"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "true",
+      "dialog_node": "node_1_1594804392550",
+      "previous_sibling": "node_8_1594804232131"
+    },
+    {
+      "type": "frame",
+      "title": "roll number",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1594803372317"
+      },
+      "conditions": "true",
+      "dialog_node": "node_9_1594809997220",
+      "previous_sibling": "node_4_1594809333072"
+    },
+    {
+      "type": "standard",
+      "title": "welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Enter your roll number"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_4_1594809333072"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Technical HR bot",
+  "language": "en",
+  "description": ""
+}
