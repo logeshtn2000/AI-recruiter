@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1></h1>
+
+
+<br>
+
+<form id="usrform">
+  Name: <input type="text" name="usrname">
+  <textarea rows="25" cols="57" name="code" form="usrform" id="coding"></textarea>
+
+   <input type="button" onclick="myFunction()" value="Run">
+  <input type="button" onclick="myFunc()" value="Submit">
+</form>
+
+
+<textarea rows="10" cols="50" id="demo"></textarea>
+<script>
+	function myFunc()
+	{
+	    location.replace("https://node-red-06072020.eu-gb.cf.appdomain.cloud/ui/#!/0?socketid=pYN2hqyNR-26LJyMAACN");
+	}
+    
+</script>
+
+</body>
+</html>
